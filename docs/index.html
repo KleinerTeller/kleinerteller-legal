@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kleiner Teller – Rechtliche Informationen</title>
+  <meta name="description" content="Datenschutzerklärung, AGB und Haftungsausschluss der App Kleiner Teller – Ernährungs-App für Babys und Kleinkinder." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #4A90D9;
+      --primary-light: #EBF4FF;
+      --text: #1a1a2e;
+      --text-secondary: #555;
+      --text-muted: #999;
+      --surface: #ffffff;
+      --bg: #f4f7fb;
+      --border: #e4e8ef;
+      --radius: 14px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── HERO ───────────────────────────────── */
+    .hero {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+    .hero-title {
+      font-size: clamp(2rem, 6vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .hero-title span { color: var(--primary); }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 480px;
+      margin: 0 auto 32px;
+    }
+
+    /* ── FEATURES ───────────────────────────── */
+    .features {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 0;
+    }
+    .feature-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    .feature-chip .icon { font-size: 1rem; }
+
+    /* ── MAIN CONTENT ───────────────────────── */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    /* ── LEGAL CARDS ────────────────────────── */
+    .cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 48px; }
+    a.card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      text-decoration: none;
+      color: var(--text);
+      transition: box-shadow 0.15s, border-color 0.15s;
+    }
+    a.card:hover {
+      box-shadow: 0 4px 16px rgba(74, 144, 217, 0.12);
+      border-color: var(--primary);
+    }
+    .card-left { display: flex; align-items: center; gap: 14px; }
+    .card-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--primary-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .card-title { font-weight: 700; font-size: 0.95rem; }
+    .card-sub { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+    .card-arrow { color: var(--primary); font-size: 1.1rem; flex-shrink: 0; }
+
+    /* ── ABOUT ──────────────────────────────── */
+    .about-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 48px;
+    }
+    .about-box h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .about-box p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .about-box p:last-child { margin-bottom: 0; }
+    .about-box a { color: var(--primary); text-decoration: none; }
+    .about-box a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ─────────────────────────────── */
+    footer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      padding: 0 20px 32px;
+    }
+    footer a { color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="badge">Rechtliche Informationen</div>
+    <h1 class="hero-title">Kleiner<span>Teller</span></h1>
+    <p class="hero-sub">
+      Gesunde Ernährung für dein Baby und Kleinkind –
+      altersgerechte Rezepte, Nährwert-Tracking und Wachstumskurven.
+    </p>
+    <div class="features">
+      <div class="feature-chip"><span class="icon">🍽️</span> Altersgerechte Rezepte</div>
+      <div class="feature-chip"><span class="icon">📊</span> Nährwert-Tracking</div>
+      <div class="feature-chip"><span class="icon">📈</span> Wachstumskurven (WHO)</div>
+      <div class="feature-chip"><span class="icon">🤖</span> KI-Beratung (Premium)</div>
+    </div>
+  </section>
+
+  <!-- LEGAL DOCS -->
+  <div class="container">
+    <p class="section-label">Rechtliche Dokumente</p>
+    <div class="cards">
+      <a class="card" href="datenschutz.html">
+        <div class="card-left">
+          <div class="card-icon">🔒</div>
+          <div>
+            <div class="card-title">Datenschutzerklärung</div>
+            <div class="card-sub">DSGVO-konforme Datenschutzinformationen</div>
+          </div>
+        </div>
+        <div class="card-arrow">›</div>
+      </a>
+      <a class="card" href="agb.html">
+        <div class="card-left">
+          <div class="card-icon">📄</div>
+          <div>
+            <div class="card-title">Nutzungsbedingungen (AGB)</div>
+            <div class="card-sub">Allgemeine Geschäftsbedingungen</div>
+          </div>
+        </div>
+        <div class="card-arrow">›</div>
+      </a>
+      <a class="card" href="haftungsausschluss.html">
+        <div class="card-left">
+          <div class="card-icon">⚖️</div>
+          <div>
+            <div class="card-title">Haftungsausschluss</div>
+            <div class="card-sub">Rechtliche Hinweise zur App-Nutzung</div>
+          </div>
+        </div>
+        <div class="card-arrow">›</div>
+      </a>
+    </div>
+
+    <!-- ABOUT / KONTAKT -->
+    <p class="section-label">Anbieter & Kontakt</p>
+    <div class="about-box">
+      <h2>Verantwortlicher</h2>
+      <p>
+        <strong>Baki Deniz</strong><br>
+        Glockenstr. 15, 93152 Nittendorf
+      </p>
+      <p>
+        Bei Fragen zu Datenschutz, Konto-Löschung oder rechtlichen Themen:<br>
+        <a href="mailto:info@kleinerteller.de">info@kleinerteller.de</a>
+      </p>
+      <p>
+        Alle Inhalte dieser App dienen ausschließlich der Unterstützung bei der
+        Ernährungsplanung und ersetzen keine medizinische Beratung.
+        Stand der Dokumente: <strong>Februar 2026</strong>.
+      </p>
+    </div>
+
+  </div>
+
+  <footer>
+    &copy; 2026 Baki Deniz &middot;
+    <a href="mailto:info@kleinerteller.de">info@kleinerteller.de</a>
+  </footer>
+
+</body>
+</html>
