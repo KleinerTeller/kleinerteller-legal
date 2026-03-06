@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support – Kleiner Teller</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #f8f9fa;
+      color: #1a1a2e;
+    }
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e8e8e8;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header a {
+      color: #4A90D9;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    header h1 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+    h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .subtitle {
+      color: #888;
+      font-size: 0.9rem;
+      margin-bottom: 36px;
+    }
+    /* Contact Card */
+    .contact-card {
+      background: #fff;
+      border: 1px solid #e4e8ef;
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: #EBF4FF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .contact-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+    .contact-desc {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .contact-link {
+      display: inline-block;
+      background: #4A90D9;
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+    .contact-link:hover { background: #3a7bc8; }
+    /* FAQ */
+    .faq-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 14px;
+    }
+    details {
+      background: #fff;
+      border: 1px solid #e4e8ef;
+      border-radius: 12px;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+    summary {
+      padding: 16px 20px;
+      font-weight: 600;
+      font-size: 0.93rem;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: '+';
+      font-size: 1.2rem;
+      color: #4A90D9;
+      font-weight: 400;
+    }
+    details[open] summary::after { content: '−'; }
+    .faq-body {
+      padding: 0 20px 16px;
+      font-size: 0.88rem;
+      color: #444;
+      line-height: 1.65;
+    }
+    .faq-body a { color: #4A90D9; }
+    footer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #999;
+      padding: 0 20px 32px;
+    }
+    footer a { color: #999; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html">&#8592; Zurück</a>
+    <h1>Support</h1>
+  </header>
+
+  <main>
+    <h2>Wie können wir helfen?</h2>
+    <p class="subtitle">Antworten auf häufige Fragen und Kontaktmöglichkeiten.</p>
+
+    <!-- Kontakt -->
+    <div class="contact-card">
+      <div class="contact-icon">✉️</div>
+      <div>
+        <div class="contact-title">Per E-Mail kontaktieren</div>
+        <div class="contact-desc">
+          Du hast eine Frage zur App, ein technisches Problem oder möchtest
+          dein Konto löschen? Schreib uns – wir antworten innerhalb von 48 Stunden.
+        </div>
+        <a class="contact-link" href="mailto:info@kleinerteller.de">info@kleinerteller.de</a>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <p class="faq-label">Häufige Fragen</p>
+
+    <details>
+      <summary>Wie kann ich mein Abonnement kündigen?</summary>
+      <div class="faq-body">
+        <p><strong>iOS:</strong> Einstellungen → Dein Name → Abonnements → Kleiner Teller → Abonnement kündigen.</p>
+        <p style="margin-top:8px"><strong>Android:</strong> Play Store → Menü → Abonnements → Kleiner Teller → Kündigen.</p>
+        <p style="margin-top:8px">Die Kündigung muss mindestens 24 Stunden vor Ende des Abrechnungszeitraums erfolgen.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Wie lösche ich mein Konto und meine Daten?</summary>
+      <div class="faq-body">
+        In der App: <strong>Einstellungen → Konto → Konto löschen</strong>.<br><br>
+        Alternativ schreib uns an <a href="mailto:info@kleinerteller.de">info@kleinerteller.de</a> – wir löschen dein Konto und alle gespeicherten Daten innerhalb von 48 Stunden.
+      </div>
+    </details>
+
+    <details>
+      <summary>Ich habe mein Passwort vergessen. Was tun?</summary>
+      <div class="faq-body">
+        Tippe auf dem Login-Bildschirm auf <strong>„Passwort vergessen"</strong>. Du erhältst eine E-Mail mit einem Link zum Zurücksetzen des Passworts. Bitte auch im Spam-Ordner nachsehen.
+      </div>
+    </details>
+
+    <details>
+      <summary>Warum sehe ich keine altersgerechten Rezepte?</summary>
+      <div class="faq-body">
+        Die App benötigt das Geburtsdatum deines Kindes, um Rezepte nach Alter zu filtern. Du kannst das Geburtsdatum unter <strong>Einstellungen → Kind → Bearbeiten</strong> eintragen oder anpassen.
+      </div>
+    </details>
+
+    <details>
+      <summary>Welche Daten werden gespeichert?</summary>
+      <div class="faq-body">
+        Wir speichern nur die Daten, die du selbst eingibst (E-Mail, Kindsdaten, Mahlzeiten). Details findest du in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.
+      </div>
+    </details>
+
+    <details>
+      <summary>Die App stürzt ab oder zeigt einen Fehler. Was tun?</summary>
+      <div class="faq-body">
+        Bitte versuche folgendes:<br><br>
+        1. App schließen und neu öffnen<br>
+        2. App-Update im Store prüfen<br>
+        3. App deinstallieren und neu installieren<br><br>
+        Hilft nichts davon, schreib uns bitte mit einer kurzen Fehlerbeschreibung an <a href="mailto:info@kleinerteller.de">info@kleinerteller.de</a>.
+      </div>
+    </details>
+
+    <details>
+      <summary>Ist die App für medizinische Zwecke geeignet?</summary>
+      <div class="faq-body">
+        Nein. Die App dient ausschließlich zur Unterstützung bei der Ernährungsplanung und ersetzt keine medizinische oder ernährungswissenschaftliche Beratung. Bei gesundheitlichen Fragen wende dich an deinen Kinderarzt.
+      </div>
+    </details>
+
+  </main>
+
+  <footer>
+    &copy; 2026 Baki Deniz &middot;
+    <a href="mailto:info@kleinerteller.de">info@kleinerteller.de</a>
+  </footer>
+
+</body>
+</html>
