@@ -60,6 +60,21 @@
       margin: 0 auto 32px;
     }
 
+    /* ── APP STORE BADGE ───────────────────── */
+    .store-badges {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .store-badges a {
+      display: inline-block;
+      transition: opacity 0.15s;
+    }
+    .store-badges a:hover { opacity: 0.8; }
+    .store-badges img { height: 44px; display: block; }
+
     /* ── FEATURES ───────────────────────────── */
     .features {
       display: flex;
@@ -171,6 +186,13 @@
       Gesunde Ernährung für dein Baby und Kleinkind –
       altersgerechte Rezepte, Nährwert-Tracking und Wachstumskurven.
     </p>
+    <div class="store-badges">
+      <a href="https://apps.apple.com/de/app/kleinerteller/id6759757765" target="_blank" rel="noopener">
+        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de"
+             alt="Laden im App Store" />
+      </a>
+    </div>
+
     <div class="features">
       <div class="feature-chip"><span class="icon">🍽️</span> Altersgerechte Rezepte</div>
       <div class="feature-chip"><span class="icon">📊</span> Nährwert-Tracking</div>
