@@ -3,6 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2JHXQCTDJ9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { analytics_storage: 'denied' });
+    gtag('js', new Date());
+    gtag('config', 'G-2JHXQCTDJ9');
+  </script>
   <title>Kleiner Teller – Rechtliche Informationen</title>
   <meta name="description" content="Datenschutzerklärung, AGB und Haftungsausschluss der App Kleiner Teller – Ernährungs-App für Babys und Kleinkinder." />
   <style>
@@ -276,6 +285,48 @@
     &copy; 2026 Baki Deniz &middot;
     <a href="mailto:info@kleinerteller.de">info@kleinerteller.de</a>
   </footer>
+
+  <!-- Cookie Banner -->
+  <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;padding:16px 20px;background:#fff;border-top:1px solid #e4e8ef;box-shadow:0 -4px 24px rgba(26,26,46,.07);animation:slideUp .3s ease;">
+    <style>
+      @keyframes slideUp { from { transform:translateY(100%); opacity:0; } to { transform:translateY(0); opacity:1; } }
+      #cookie-banner .cb-inner { max-width:900px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap; }
+      #cookie-banner p { font-size:.85rem;color:#555;line-height:1.5;flex:1;min-width:220px; }
+      #cookie-banner p a { color:#4A90D9;text-decoration:none; }
+      #cookie-banner p a:hover { text-decoration:underline; }
+      #cookie-banner .cb-btns { display:flex;gap:8px;flex-shrink:0; }
+      #cookie-decline { padding:9px 18px;border:1.5px solid #e4e8ef;background:transparent;border-radius:14px;font-size:.85rem;color:#555;cursor:pointer;font-weight:500;transition:background .15s; }
+      #cookie-decline:hover { background:#f4f7fb; }
+      #cookie-accept { padding:9px 20px;background:#4A90D9;color:#fff;border:none;border-radius:14px;font-size:.85rem;font-weight:600;cursor:pointer;transition:background .15s; }
+      #cookie-accept:hover { background:#2a6db5; }
+    </style>
+    <div class="cb-inner">
+      <p>Wir verwenden Google Analytics um unsere Website zu verbessern. Deine Daten werden nur mit deiner Zustimmung erfasst. <a href="/datenschutz.html">Mehr erfahren</a></p>
+      <div class="cb-btns">
+        <button id="cookie-decline">Ablehnen</button>
+        <button id="cookie-accept">Akzeptieren</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function() {
+      var consent = localStorage.getItem('kt_cookie');
+      if (consent === 'granted') {
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+      } else if (!consent) {
+        document.getElementById('cookie-banner').style.display = 'block';
+      }
+      document.getElementById('cookie-accept').onclick = function() {
+        localStorage.setItem('kt_cookie', 'granted');
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+        document.getElementById('cookie-banner').style.display = 'none';
+      };
+      document.getElementById('cookie-decline').onclick = function() {
+        localStorage.setItem('kt_cookie', 'denied');
+        document.getElementById('cookie-banner').style.display = 'none';
+      };
+    })();
+  </script>
 
 </body>
 </html>
