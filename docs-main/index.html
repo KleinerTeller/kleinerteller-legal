@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2JHXQCTDJ9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { analytics_storage: 'denied' });
+    gtag('js', new Date());
+    gtag('config', 'G-2JHXQCTDJ9');
+  </script>
+  <title>KleinerTeller – Ernährungs-App für Babys & Kleinkinder</title>
+  <meta name="description" content="200+ altersgerechte Rezepte, WHO-Wachstumskurven und Nährwert-Tracking für Babys ab 4 Monaten. Jetzt kostenlos im App Store und Google Play." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #1976D2;
+      --primary-dark: #1256a0;
+      --primary-light: #EBF4FF;
+      --accent: #42a5f5;
+      --green: #34a853;
+      --text: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --surface: #ffffff;
+      --bg: #f8fafc;
+      --border: #e2e8f0;
+      --radius: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--surface);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ──────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-logo {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: var(--primary); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.87rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      display: inline-block;
+      background: var(--primary);
+      color: white !important;
+      font-size: 0.85rem !important;
+      font-weight: 700 !important;
+      padding: 9px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: opacity 0.15s !important;
+    }
+    .nav-cta:hover { opacity: 0.88; }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+    }
+
+    /* ── BLOG ─────────────────────────────── */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    @media (max-width: 860px) { .blog-grid { grid-template-columns: 1fr; } }
+    .blog-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: box-shadow 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    .blog-card:hover { box-shadow: 0 8px 32px rgba(25,118,210,0.10); transform: translateY(-2px); }
+    .blog-placeholder { cursor: default; }
+    .blog-placeholder:hover { box-shadow: none; transform: none; }
+    .blog-date { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+    .blog-title { font-size: 1rem; font-weight: 700; color: var(--text); line-height: 1.4; }
+    .blog-excerpt { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; flex: 1; }
+    .blog-read { font-size: 0.85rem; font-weight: 600; color: var(--primary); display: flex; align-items: center; gap: 4px; margin-top: auto; }
+    .blog-placeholder .blog-read { color: var(--text-muted); }
+    .blog-skeleton { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); height: 180px; animation: blogShimmer 1.5s ease-in-out infinite; }
+    @keyframes blogShimmer { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
+    .blog-all-row { text-align: center; }
+    .blog-all-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.9rem; font-weight: 700; color: var(--primary); text-decoration: none; padding: 12px 28px; border: 2px solid var(--primary); border-radius: 50px; transition: background 0.15s, color 0.15s; }
+    .blog-all-link:hover { background: var(--primary); color: #fff; }
+
+    /* ── HERO ─────────────────────────────── */
+    .hero {
+      background: linear-gradient(140deg, #0d47a1 0%, #1976D2 45%, #42a5f5 100%);
+      padding: 80px 24px 0;
+      overflow: hidden;
+    }
+    .hero-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-end;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .hero-text {
+      flex: 1;
+      min-width: 280px;
+      color: white;
+      padding-bottom: 80px;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 50px;
+      padding: 5px 14px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow .dot {
+      width: 6px;
+      height: 6px;
+      background: #4ade80;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: rgba(255,255,255,0.75);
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      opacity: 0.88;
+      max-width: 440px;
+      margin-bottom: 36px;
+      line-height: 1.65;
+    }
+    .store-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 22px;
+      border-radius: 14px;
+      text-decoration: none;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+    .store-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+    .store-btn.ios {
+      background: #111;
+      color: white;
+    }
+    .store-btn.android {
+      background: #1a7a3c;
+      color: white;
+    }
+    .store-btn-text small {
+      display: block;
+      font-size: 0.62rem;
+      opacity: 0.75;
+      letter-spacing: 0.03em;
+    }
+    .store-btn-text strong {
+      display: block;
+      font-size: 0.92rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .hero-rating {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      opacity: 0.8;
+    }
+    .stars { color: #fbbf24; letter-spacing: 1px; }
+
+    /* ── PHONE MOCKUP ─────────────────────── */
+    .hero-phone {
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+    .phone-frame {
+      width: 230px;
+      height: 470px;
+      background: #141414;
+      border-radius: 48px;
+      padding: 12px;
+      box-shadow:
+        0 60px 120px rgba(0,0,0,0.4),
+        0 0 0 1px rgba(255,255,255,0.07),
+        inset 0 0 0 1.5px #2a2a2a;
+      position: relative;
+    }
+    .phone-notch {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 24px;
+      background: #141414;
+      border-radius: 0 0 16px 16px;
+      z-index: 5;
+    }
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      border-radius: 38px;
+      overflow: hidden;
+      position: relative;
+    }
+    .phone-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    /* ── STATS BAR ────────────────────────── */
+    .stats-bar {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 22px 24px;
+    }
+    .stats-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    /* ── SECTIONS ─────────────────────────── */
+    .section {
+      padding: 80px 24px;
+    }
+    .section-alt { background: var(--bg); }
+    .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .section-sub {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin-bottom: 48px;
+      line-height: 1.7;
+    }
+
+    /* ── FEATURE GRID ─────────────────────── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 24px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .feature-card:hover {
+      box-shadow: 0 8px 32px rgba(25,118,210,0.1);
+      transform: translateY(-3px);
+    }
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--primary-light);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .feature-icon svg {
+      color: var(--primary);
+    }
+    .feature-card-title {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .feature-card-text {
+      font-size: 0.87rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .feature-badge {
+      display: inline-block;
+      background: #fff3e0;
+      color: #e65100;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-top: 12px;
+      letter-spacing: 0.04em;
+    }
+    .feature-badge.new {
+      background: #e8f5e9;
+      color: #1b5e20;
+    }
+
+    /* ── SPOTLIGHT (premium callout) ──────── */
+    .spotlight {
+      background: linear-gradient(135deg, #0d47a1 0%, #1976D2 60%, #1e88e5 100%);
+      border-radius: 24px;
+      padding: 48px 40px;
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+      color: white;
+    }
+    .spotlight-text { flex: 1; min-width: 260px; }
+    .spotlight-eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      margin-bottom: 16px;
+    }
+    .spotlight h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .spotlight p {
+      font-size: 0.95rem;
+      opacity: 0.88;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      max-width: 400px;
+    }
+    .spotlight-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 12px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: transform 0.15s;
+    }
+    .spotlight-link:hover { transform: translateY(-2px); }
+    .spotlight-visual {
+      flex-shrink: 0;
+    }
+    /* mini phone for spotlight */
+    .mini-phone {
+      width: 150px;
+      height: 300px;
+      background: #141414;
+      border-radius: 32px;
+      padding: 8px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 0 0 1px #2a2a2a;
+      position: relative;
+    }
+    .mini-phone-notch {
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 56px;
+      height: 16px;
+      background: #141414;
+      border-radius: 0 0 10px 10px;
+      z-index: 5;
+    }
+    .mini-phone-screen {
+      width: 100%;
+      height: 100%;
+      border-radius: 26px;
+      overflow: hidden;
+    }
+    .mini-phone-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    /* ── PREMIUM ──────────────────────────── */
+    .premium-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+    .plan-card {
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: 24px;
+      padding: 32px 28px;
+      position: relative;
+    }
+    .plan-card.featured {
+      border-color: var(--primary);
+      box-shadow: 0 8px 40px rgba(25,118,210,0.14);
+    }
+    .plan-badge {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 16px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .plan-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .plan-price {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 4px;
+      letter-spacing: -0.03em;
+    }
+    .plan-price span {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .plan-desc {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.5;
+    }
+    .plan-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .plan-features li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 0.88rem;
+    }
+    .check { color: var(--green); font-weight: 800; flex-shrink: 0; }
+    .plan-btn {
+      display: block;
+      text-align: center;
+      padding: 13px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .plan-btn:hover { opacity: 0.85; }
+    .plan-btn.outline { border: 2px solid var(--primary); color: var(--primary); }
+    .plan-btn.filled { background: var(--primary); color: white; }
+
+    /* ── ABOUT ────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
+    .about-text p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .about-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+    .about-card-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .about-card-text {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .about-card a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .about-card a:hover { text-decoration: underline; }
+
+    /* ── CTA BOTTOM ───────────────────────── */
+    .cta-section {
+      background: linear-gradient(135deg, #0d47a1 0%, #1976D2 60%, #42a5f5 100%);
+      padding: 80px 24px;
+      text-align: center;
+      color: white;
+    }
+    .cta-section h2 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .cta-section p {
+      font-size: 1rem;
+      opacity: 0.88;
+      max-width: 440px;
+      margin: 0 auto 40px;
+      line-height: 1.65;
+    }
+    .cta-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── FOOTER ───────────────────────────── */
+    footer {
+      background: #0f172a;
+      color: #94a3b8;
+      padding: 48px 24px 32px;
+    }
+    .footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .footer-brand-name {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 6px;
+    }
+    .footer-brand-name span { color: #60a5fa; }
+    .footer-brand-text {
+      font-size: 0.82rem;
+      max-width: 220px;
+      line-height: 1.6;
+    }
+    .footer-col h4 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+    }
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .footer-col a {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-col a:hover { color: white; }
+    .footer-divider {
+      border: none;
+      border-top: 1px solid #1e293b;
+      margin-bottom: 20px;
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 0.78rem;
+    }
+    .footer-bottom a { color: #64748b; text-decoration: none; }
+    .footer-bottom a:hover { color: #94a3b8; }
+
+    @media (max-width: 700px) {
+      .hero { padding: 60px 20px 0; }
+      .hero-inner { flex-direction: column; align-items: center; }
+      .hero-text { padding-bottom: 32px; text-align: center; }
+      .store-buttons { justify-content: center; }
+      .hero-rating { justify-content: center; }
+      .hero-phone { display: none; }
+      .spotlight { padding: 32px 24px; }
+      .spotlight h3 { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Kleiner<span>Teller</span></a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#premium">Premium</a></li>
+        <li><a href="#ueber-uns">Über uns</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="https://partner.kleinerteller.de" target="_blank">Partner</a></li>
+        <li><a id="nav-store-link" href="https://apps.apple.com/de/app/kleinerteller/id6759757765" target="_blank" class="nav-cta" data-store="ios" data-location="nav">App laden</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-eyebrow">
+          <span class="dot"></span>
+          Jetzt auf iOS &amp; Android
+        </div>
+        <h1>Gesunde Ernährung<br>für dein Kind –<br><em>einfach &amp; wissenschaftlich</em></h1>
+        <p class="hero-sub">
+          200+ altersgerechte Rezepte, WHO-Wachstumskurven und Nährwert-Tracking für Babys und Kleinkinder ab 4 Monaten.
+        </p>
+        <div class="store-buttons">
+          <a href="https://apps.apple.com/de/app/kleinerteller/id6759757765" target="_blank" rel="noopener" data-store="ios" data-location="hero">
+            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de"
+                 alt="Laden im App Store" style="height:44px;" />
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.bakideniz.kleinerteller" target="_blank" rel="noopener" data-store="android" data-location="hero">
+            <img src="https://play.google.com/intl/de_de/badges/static/images/badges/de_badge_web_generic.png"
+                 alt="Jetzt bei Google Play" style="height:44px;" />
+          </a>
+        </div>
+        <div class="hero-rating">
+          <span class="stars">★★★★★</span>
+          <span>5,0 im App Store · kostenlos herunterladen</span>
+        </div>
+      </div>
+
+      <!-- Phone mit echtem Screenshot -->
+      <div class="hero-phone">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <img src="assets/screenshot_screen.png" alt="KleinerTeller App – Nährstoff-Tracking" />
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat">
+        <div class="stat-num">1.000+</div>
+        <div class="stat-label">aktive Familien</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">altersgerechte Rezepte</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">★ 5,0</div>
+        <div class="stat-label">App Store Bewertung</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">WHO</div>
+        <div class="stat-label">Wachstumsstandard</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">DGE</div>
+        <div class="stat-label">Nährstoffempfehlungen</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="section" id="features">
+    <div class="section-inner">
+      <p class="section-label">Was kann die App?</p>
+      <h2 class="section-title">Alles was Eltern brauchen</h2>
+      <p class="section-sub">Von der ersten Beikost mit 4 Monaten bis zum Kleinkindalter – KleinerTeller begleitet euch auf dem Weg zu einer gesunden Ernährung.</p>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 2v6c0 1.1.9 2 2 2s2-.9 2-2V2"/>
+              <line x1="5" y1="10" x2="5" y2="22"/>
+              <path d="M19 2a4 4 0 0 0-4 4v4h4"/>
+              <line x1="17" y1="10" x2="17" y2="22"/>
+            </svg>
+          </div>
+          <div class="feature-card-title">200+ altersgerechte Rezepte</div>
+          <p class="feature-card-text">Alle Rezepte sind nach Alter gefiltert – von der ersten Beikost ab 4 Monaten bis zu Familiengerichten für Kleinkinder. Mit Zutatenlisten und Schritt-für-Schritt-Anleitungen.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 17 8 11 13 14 19 7"/>
+              <line x1="3" y1="20" x2="21" y2="20"/>
+              <line x1="3" y1="4" x2="3" y2="20"/>
+            </svg>
+          </div>
+          <div class="feature-card-title">WHO-Wachstumskurven</div>
+          <p class="feature-card-text">Trage Gewicht und Größe ein und sieh sofort, wo dein Kind auf der WHO-Wachstumskurve liegt. Messungen per Datum – der Verlauf ist auf einen Blick sichtbar.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="13" width="4" height="8" rx="1"/>
+              <rect x="10" y="8" width="4" height="13" rx="1"/>
+              <rect x="17" y="4" width="4" height="17" rx="1"/>
+            </svg>
+          </div>
+          <div class="feature-card-title">Nährwert-Tracking</div>
+          <p class="feature-card-text">Jede Mahlzeit wird auf Basis der BLS-Datenbank (über 10.000 Lebensmittel) ausgewertet. Kalorien, Protein, Eisen, Kalzium und mehr – täglich im Blick.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="8" y1="13" x2="16" y2="13"/>
+              <line x1="8" y1="17" x2="12" y2="17"/>
+            </svg>
+          </div>
+          <div class="feature-card-title">Arztbericht als PDF</div>
+          <p class="feature-card-text">Mit einem Tap einen professionellen Ernährungs- und Wachstumsbericht erstellen – ideal für die U-Untersuchung beim Kinderarzt.</p>
+          <span class="feature-badge">Premium</span>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 7V5a2 2 0 0 1 2-2h2"/>
+              <path d="M17 3h2a2 2 0 0 1 2 2v2"/>
+              <path d="M21 17v2a2 2 0 0 1-2 2h-2"/>
+              <path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
+              <line x1="7" y1="8" x2="7" y2="16"/>
+              <line x1="10" y1="8" x2="10" y2="16"/>
+              <line x1="13" y1="8" x2="13" y2="16"/>
+              <line x1="16" y1="8" x2="16" y2="16"/>
+            </svg>
+          </div>
+          <div class="feature-card-title">Barcode-Scanner</div>
+          <p class="feature-card-text">Lebensmittel direkt per Barcode scannen und automatisch Nährwerte abrufen – schnell, einfach und ohne manuelles Suchen.</p>
+          <span class="feature-badge">Premium</span>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <circle cx="12" cy="16.5" r="0.7" fill="var(--primary)" stroke="none"/>
+            </svg>
+          </div>
+          <div class="feature-card-title">Allergene & Unverträglichkeiten</div>
+          <p class="feature-card-text">Alle 14 EU-Hauptallergene werden pro Rezept angezeigt. So behältst du bei Unverträglichkeiten immer den Überblick.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div class="feature-card-title">Mehrere Kinderprofile</div>
+          <p class="feature-card-text">Hast du Geschwisterkinder? Lege für jedes Kind ein eigenes Profil an – mit individuellen Daten, Mahlzeiten und Wachstumskurven.</p>
+          <span class="feature-badge">Premium</span>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+          </div>
+          <div class="feature-card-title">Erinnerungen & Mahlzeitenplan</div>
+          <p class="feature-card-text">Lass dich zur Mahlzeit erinnern und plane die Woche im Voraus. Keine vergessenen Mahlzeiten, kein Stress am Mittag.</p>
+          <span class="feature-badge new">Neu</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPOTLIGHT: Arztbericht -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <div class="spotlight">
+        <div class="spotlight-text">
+          <span class="spotlight-eyebrow">Premium Feature</span>
+          <h3>Arztbericht direkt<br>aus der App</h3>
+          <p>
+            Mit einem Tap erstellst du einen professionellen Ernährungs- und Wachstumsbericht als PDF – ideal für die U-Untersuchung. Zeitraum wählbar: 1, 3, 6 oder 12 Monate.
+          </p>
+          <a id="spotlight-store-link" href="https://apps.apple.com/de/app/kleinerteller/id6759757765" target="_blank" class="spotlight-link" data-store="ios" data-location="spotlight">
+            Jetzt kostenlos starten
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+        <div class="spotlight-visual">
+          <div class="mini-phone">
+            <div class="mini-phone-notch"></div>
+            <div class="mini-phone-screen">
+              <img src="assets/screenshot_arztbericht.png" alt="KleinerTeller Arztbericht – PDF erstellen" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREMIUM -->
+  <section class="section" id="premium">
+    <div class="section-inner">
+      <p class="section-label">Für jede Familie</p>
+      <h2 class="section-title">Kostenlos starten,<br>Premium wenn du mehr willst</h2>
+      <p class="section-sub">Grundfunktionen sind dauerhaft kostenlos. Premium schaltet erweiterte Features frei – direkt im App Store oder Google Play.</p>
+      <div class="premium-grid">
+        <div class="plan-card">
+          <div class="plan-name">Basis</div>
+          <div class="plan-price">0€ <span>/ dauerhaft</span></div>
+          <p class="plan-desc">Alles, was du für den Start brauchst – kostenlos und ohne Kreditkarte.</p>
+          <ul class="plan-features">
+            <li><span class="check">✓</span> 200+ Rezepte (altersgerecht gefiltert)</li>
+            <li><span class="check">✓</span> 1 Kinderprofil</li>
+            <li><span class="check">✓</span> Mahlzeiten-Tracking & Nährwerte</li>
+            <li><span class="check">✓</span> WHO-Wachstumskurven</li>
+            <li><span class="check">✓</span> Allergene im Überblick</li>
+          </ul>
+          <a id="plan-free-link" href="https://apps.apple.com/de/app/kleinerteller/id6759757765" target="_blank" class="plan-btn outline" data-store="ios" data-location="plan_free">Kostenlos laden</a>
+        </div>
+        <div class="plan-card featured">
+          <div class="plan-badge">⭐ Meist gewählt</div>
+          <div class="plan-name">Premium</div>
+          <div class="plan-price">In-App <span>/ App Store & Google Play</span></div>
+          <p class="plan-desc">Für Familien, die das Maximum aus der App herausholen möchten.</p>
+          <ul class="plan-features">
+            <li><span class="check">✓</span> Alles aus Basis</li>
+            <li><span class="check">✓</span> <strong>Unbegrenzte Kinderprofile</strong></li>
+            <li><span class="check">✓</span> <strong>Arztbericht als PDF</strong> (1 / 3 / 6 / 12 Monate)</li>
+            <li><span class="check">✓</span> <strong>Barcode-Scanner</strong> für Lebensmittel</li>
+            <li><span class="check">✓</span> <strong>Eigene Rezepte</strong> erstellen & speichern</li>
+            <li><span class="check">✓</span> Mahlzeiten-Erinnerungen</li>
+            <li><span class="check">✓</span> Frühzeitiger Zugang zu neuen Features</li>
+          </ul>
+          <a id="plan-premium-link" href="https://apps.apple.com/de/app/kleinerteller/id6759757765" target="_blank" class="plan-btn filled" data-store="ios" data-location="plan_premium">Premium freischalten</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÜBER UNS -->
+  <section class="section section-alt" id="ueber-uns">
+    <div class="section-inner">
+      <p class="section-label">Über uns</p>
+      <h2 class="section-title">Entstanden aus echter<br>Elternerfahrung</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            KleinerTeller entstand aus dem Alltag als Elternteil – dem Wunsch nach einer App, die wirklich hilft: altersgerechte Rezepte, nachvollziehbare Nährwerte, ein Wachstumstagebuch nach WHO-Standard und ein Bericht, den der Kinderarzt versteht.
+          </p>
+          <p>
+            Die App basiert auf der deutschen BLS-Nährwertdatenbank, den WHO-Wachstumskurven und den Empfehlungen der Deutschen Gesellschaft für Ernährung (DGE). Alle Daten liegen auf europäischen Servern – sicher, DSGVO-konform.
+          </p>
+          <p>
+            KleinerTeller wird kontinuierlich weiterentwickelt. Feedback, Ideen und Kooperationsanfragen sind jederzeit willkommen.
+          </p>
+        </div>
+        <div class="about-cards">
+          <div class="about-card">
+            <div class="about-card-title">📬 Allgemeiner Kontakt</div>
+            <div class="about-card-text">
+              Fragen zur App, Feedback oder Support:<br>
+              <a href="mailto:support@kleinerteller.de">support@kleinerteller.de</a>
+            </div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-title">🤝 Partnerschaft & Kooperationen</div>
+            <div class="about-card-text">
+              Für Kinderarztpraxen, Kitas und Ernährungsberatungen:<br>
+              <a href="https://partner.kleinerteller.de" target="_blank">partner.kleinerteller.de</a>
+            </div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-title">📰 Presse & Medien</div>
+            <div class="about-card-text">
+              Presseanfragen, Interviews und Bildmaterial:<br>
+              <a href="mailto:presse@kleinerteller.de">presse@kleinerteller.de</a>
+            </div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-title">⚖️ Rechtliches</div>
+            <div class="about-card-text">
+              Impressum, Datenschutz und AGB:<br>
+              <a href="https://legal.kleinerteller.de" target="_blank">legal.kleinerteller.de</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section class="section section-alt" id="blog">
+    <div class="section-inner">
+      <p class="section-label">Wissen für Eltern</p>
+      <h2 class="section-title">Ratgeber & Tipps</h2>
+      <p class="section-sub">Altersgerechte Ernährung, Entwicklung und Gesundheit – fundiert und verständlich erklärt.</p>
+      <div class="blog-grid" id="blog-grid">
+        <div class="blog-skeleton"></div>
+        <div class="blog-skeleton"></div>
+        <div class="blog-skeleton"></div>
+      </div>
+      <div class="blog-all-row">
+        <a href="https://kleinerteller.com" target="_blank" rel="noopener" class="blog-all-link">
+          Alle Beiträge lesen
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Bereit für einen gesünderen Start?</h2>
+    <p>Jetzt kostenlos herunterladen – für iOS und Android. Keine Kreditkarte, kein Abo nötig.</p>
+    <div class="cta-btns">
+      <a href="https://apps.apple.com/de/app/kleinerteller/id6759757765" target="_blank" rel="noopener" data-store="ios" data-location="cta">
+        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de"
+             alt="Laden im App Store" style="height:44px;" />
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.bakideniz.kleinerteller" target="_blank" rel="noopener" data-store="android" data-location="cta">
+        <img src="https://play.google.com/intl/de_de/badges/static/images/badges/de_badge_web_generic.png"
+             alt="Jetzt bei Google Play" style="height:44px;" />
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-name">Kleiner<span>Teller</span></div>
+          <p class="footer-brand-text">Ernährungs-App für Babys und Kleinkinder. Wissenschaftlich fundiert, einfach in der Nutzung.</p>
+        </div>
+        <div class="footer-col">
+          <h4>App</h4>
+          <ul>
+            <li><a href="https://apps.apple.com/de/app/kleinerteller/id6759757765" target="_blank" data-store="ios" data-location="footer">App Store (iOS)</a></li>
+            <li><a href="https://play.google.com/store/apps/details?id=com.bakideniz.kleinerteller" target="_blank" data-store="android" data-location="footer">Google Play (Android)</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Blog</h4>
+          <ul>
+            <li><a href="https://kleinerteller.com" target="_blank">Alle Beiträge</a></li>
+            <li><a href="#blog">Neueste Tipps</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Für Partner</h4>
+          <ul>
+            <li><a href="https://partner.kleinerteller.de" target="_blank">Partnernetzwerk</a></li>
+            <li><a href="mailto:partner@kleinerteller.de">Anfrage stellen</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Rechtliches</h4>
+          <ul>
+            <li><a href="https://legal.kleinerteller.de" target="_blank">Impressum</a></li>
+            <li><a href="https://legal.kleinerteller.de/datenschutz.html" target="_blank">Datenschutz</a></li>
+            <li><a href="https://legal.kleinerteller.de/agb.html" target="_blank">AGB</a></li>
+            <li><a href="https://legal.kleinerteller.de/support.html" target="_blank">Support</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="footer-divider" />
+      <div class="footer-bottom">
+        <span>&copy; 2026 Baki Deniz · KleinerTeller</span>
+        <span>Basiert auf WHO-Wachstumskurven &amp; DGE-Empfehlungen</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      var isAndroid = /android/i.test(navigator.userAgent);
+      var playUrl = 'https://play.google.com/store/apps/details?id=com.bakideniz.kleinerteller';
+      if (isAndroid) {
+        var ids = ['nav-store-link', 'plan-free-link', 'plan-premium-link', 'spotlight-store-link'];
+        ids.forEach(function(id) {
+          var el = document.getElementById(id);
+          if (el) el.href = playUrl;
+        });
+      }
+    })();
+  </script>
+
+  <!-- Store Click Tracking -->
+  <script>
+    document.addEventListener('click', function(e) {
+      var el = e.target.closest('[data-store]');
+      if (!el) return;
+      gtag('event', 'store_click', {
+        platform: el.dataset.store,
+        location: el.dataset.location
+      });
+    });
+  </script>
+
+  <!-- Cookie Banner -->
+  <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;padding:16px 20px;background:#fff;border-top:1px solid #e2e8f0;box-shadow:0 -4px 24px rgba(15,23,42,.08);animation:slideUp .3s ease;">
+    <style>
+      @keyframes slideUp { from { transform:translateY(100%); opacity:0; } to { transform:translateY(0); opacity:1; } }
+      #cookie-banner .cb-inner { max-width:900px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap; }
+      #cookie-banner p { font-size:.85rem;color:#475569;line-height:1.5;flex:1;min-width:220px; }
+      #cookie-banner p a { color:#1976D2;text-decoration:none; }
+      #cookie-banner p a:hover { text-decoration:underline; }
+      #cookie-banner .cb-btns { display:flex;gap:8px;flex-shrink:0; }
+      #cookie-decline { padding:9px 18px;border:1.5px solid #e2e8f0;background:transparent;border-radius:10px;font-size:.85rem;color:#475569;cursor:pointer;font-weight:500;transition:background .15s; }
+      #cookie-decline:hover { background:#f8fafc; }
+      #cookie-accept { padding:9px 20px;background:#1976D2;color:#fff;border:none;border-radius:10px;font-size:.85rem;font-weight:600;cursor:pointer;transition:background .15s; }
+      #cookie-accept:hover { background:#1256a0; }
+    </style>
+    <div class="cb-inner">
+      <p>Wir verwenden Google Analytics um unsere Website zu verbessern. Deine Daten werden nur mit deiner Zustimmung erfasst. <a href="https://legal.kleinerteller.de/datenschutz.html" target="_blank">Mehr erfahren</a></p>
+      <div class="cb-btns">
+        <button id="cookie-decline">Ablehnen</button>
+        <button id="cookie-accept">Akzeptieren</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function() {
+      var consent = localStorage.getItem('kt_cookie');
+      if (consent === 'granted') {
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+      } else if (!consent) {
+        document.getElementById('cookie-banner').style.display = 'block';
+      }
+      document.getElementById('cookie-accept').onclick = function() {
+        localStorage.setItem('kt_cookie', 'granted');
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+        document.getElementById('cookie-banner').style.display = 'none';
+      };
+      document.getElementById('cookie-decline').onclick = function() {
+        localStorage.setItem('kt_cookie', 'denied');
+        document.getElementById('cookie-banner').style.display = 'none';
+      };
+    })();
+  </script>
+
+  <script>
+    (function() {
+      var grid = document.getElementById('blog-grid');
+      var PLACEHOLDER = [
+        { title: 'Beikost starten: Was darf mein Baby wann essen?', excerpt: 'Ab welchem Alter mit Beikost beginnen, welche Lebensmittel zuerst und was du unbedingt vermeiden solltest – wir erklären es Schritt für Schritt.', date: '' },
+        { title: 'Eisenmangel bei Babys: Symptome, Ursachen und Lösungen', excerpt: 'Eisen ist ein kritischer Nährstoff für die Gehirnentwicklung. Wie du Mangelerscheinungen erkennst und mit der richtigen Ernährung vorbeugst.', date: '' },
+        { title: 'Allergene früh einführen: So geht es sicher', excerpt: 'Frühzeitige Einführung von Allergenen kann das Allergierisiko senken. Alles was du wissen musst – Schritt für Schritt erklärt.', date: '' }
+      ];
+
+      function fmt(iso) {
+        return new Date(iso).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' });
+      }
+      function strip(html) {
+        var d = document.createElement('div'); d.innerHTML = html;
+        return (d.textContent || '').trim();
+      }
+      function card(href, date, title, excerpt, linkLabel, placeholder) {
+        return '<a class="blog-card' + (placeholder ? ' blog-placeholder' : '') + '"' +
+          (href ? ' href="' + href + '" target="_blank" rel="noopener"' : '') + '>' +
+          '<div class="blog-date">' + (date || 'Demnächst') + '</div>' +
+          '<div class="blog-title">' + title + '</div>' +
+          '<div class="blog-excerpt">' + excerpt.slice(0, 130) + (excerpt.length > 130 ? '…' : '') + '</div>' +
+          '<div class="blog-read">' + linkLabel +
+            (href ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>' : '') +
+          '</div></a>';
+      }
+
+      fetch('https://kleinerteller.com/wp-json/wp/v2/posts?per_page=3&_fields=id,title,excerpt,date,link')
+        .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
+        .then(function(posts) {
+          grid.innerHTML = posts.map(function(p) {
+            return card(p.link, fmt(p.date), p.title.rendered, strip(p.excerpt.rendered), 'Lesen', false);
+          }).join('');
+        })
+        .catch(function() {
+          grid.innerHTML = PLACEHOLDER.map(function(p) {
+            return card('', '', p.title, p.excerpt, 'Bald verfügbar', true);
+          }).join('');
+        });
+    })();
+  </script>
+
+</body>
+</html>
